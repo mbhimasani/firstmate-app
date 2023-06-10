@@ -3,21 +3,29 @@ import useSWR from 'swr';
 import { fetcher } from '.././utils/fetcher'
 
 export const Card = () => {
-    const [token, setToken] = useState('0x1f81520596ba9ae2b0e93fa0d63742781820b7a2%3A2');
+    const [text, setText] = useState(''); // for debugging
+
     const contractid = '0x1f81520596ba9ae2b0e93fa0d63742781820b7a2';
     const tokenid = '2'
-    const [res, setRes] = useState('');
-
     // any api calls are done here
-    const { data } = useSWR(token ? `/api/tokens?contractid=${contractid}&tokenid=${tokenid}` : '', fetcher)
-
+    const { data } = useSWR(`/api/tokens?contractid=${contractid}&tokenid=${tokenid}`, fetcher)
+    
+    const displayToken = () => {
+        return (
+            <div style={{"width": "200px", "height": "200px", "border": "2px solid black"}}>
+                {data?.collection?.[0].token?.name}
+            </div>
+        )
+    }
 
     return (
         <div>
-            <button
-            onClick={()=> setRes(JSON.stringify(data))}></button>
-            <div>{token}</div>
-            <div>{res}</div>
+            <button onClick={()=>{
+                setText(JSON.stringify(data));
+                console.log(data)
+            }}></button> 
+            <div>{text}</div>
+            {displayToken()}
         </div>
     )
 }

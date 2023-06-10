@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '../components/Card'
+import { NFT_SAMPLE_LIST } from '../constants';
 
 export default function Home() {
-
   return (
       <>
-        <div>
-          hello world
-        </div>
         <Card></Card>
       </>
   )
