@@ -6,7 +6,7 @@ const handleTokenList = async (
   res: NextApiResponse,
 ) => { 
   // query parameter here is a JSON string containing array of {contractid: string, tokenid: string} objects
-  // I opted to send the entire raw data over to the api route to parse. I initially tried to send contractid and tokenid as seperate parameters but realized that 1 query parameter is much more scalable. I then tried sending over a single query string as '?contractid=value&tokenid=value' but this was still read as 2 parameters in the request body. Sending over the entire data as a JSON string resolved those issues. I also preferred to create the query strings server-side.  
+  // I opted to send the entire raw data over to the api route to parse. I initially tried to send contractid and tokenid as seperate parameters but realized that 1 query parameter is much more scalable. I then tried sending over a single query string as '?contractid=value&tokenid=value' but this was still read as 2 parameters in the request body. Sending over the entire data as a JSON string resolved those issues and it is much more efficient/readable in this case since the data provided is very clean. I also preferred to create the query strings server-side.  
   const { nfts } = req.query;
 
   let collection: any[] = [];

@@ -14,11 +14,11 @@ export interface TokenData {
 
 export const Card: FC<{
     token: TokenData;
-  }> = ({ token }) => {   
-    console.log(token)
+    onClick?: () => void;
+  }> = ({ token, onClick }) => {   
     
     return (
-        <GridItemContainer>
+        <GridItemContainer onClick={onClick}>
             <CardContent>
                 <ImageContainer>
                     <GridItemImage src={token.imageSmall} alt=''></GridItemImage>
