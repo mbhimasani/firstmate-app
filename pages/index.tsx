@@ -13,18 +13,18 @@ export default function Home() {
 
   return (
       <>
-          <MainWrapper>
+          <GridContainer>
             {collections?.map((collection, index) => ( <Card token={collection.token} key={index}></Card>))}
-          </MainWrapper>
+          </GridContainer>
+
       </>
   )
 }
 
-export const MainWrapper = styled.div`
-    width: 100%;
-    margin: 55px;
-    display: flex;
-    flex-direction: column;
-    flex-flow: row wrap;
-    padding: 10px;
+export const GridContainer = styled.div`
+    margin: 55px 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
 `;
