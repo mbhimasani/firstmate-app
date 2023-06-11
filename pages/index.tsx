@@ -30,8 +30,9 @@ export default function Home() {
         }
         <ProjectHeader></ProjectHeader>
         <MainContent>
-          <FilterContainerRow>
-          </FilterContainerRow>
+          <FilterAndSortContainerRow>
+
+          </FilterAndSortContainerRow>
           <GridContainer>      
             {collections?.map((collection, index) => ( 
               <Card 
@@ -69,6 +70,6 @@ export const GridContainer = styled.div`
   justify-items: center;
 `;
 
-export const FilterContainerRow = styled.div`
+export const FilterAndSortContainerRow = styled.div`
 
 `;

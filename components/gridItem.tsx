@@ -35,9 +35,10 @@ export const Card: FC<{
 
 export const GridItemContainer = styled.div`
     border: 1px solid rgba(0,0,0,.1);
+    border-radius: 10px;
     margin-bottom: 10px;
     width: 100%;
-    height: 350px;
+    height: 50vh;
 `;
 
 export const CardContent = styled.div`
@@ -49,11 +50,11 @@ export const CardContent = styled.div`
 
 export const ImageContainer = styled.div`
     overflow: hidden; 
+    border-radius: 5px;
     position: relative; 
     height: 70%; 
-    width: 80%;
-    margin: 5px 5%;
-    padding: 5px 5%;
+    width: 90%;
+    margin: 5%;
 `;
 
 export const GridItemImage = styled.img`
@@ -64,9 +65,8 @@ export const GridItemImage = styled.img`
 
 export const TextContainer = styled.div`
     position: relative; 
-    width: 80%;
-    margin: 5px 5%;
-    padding: 5px 5%;
+    width: 90%;
+    margin: 5%;
 `;
 
 export const NFTName = styled.p`

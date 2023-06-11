@@ -36,12 +36,12 @@ export const ProjectHeader: FC = () => {
 
 export const HeaderWrapper = styled.div`
   width: 100%;
-  padding: 25px;
+  padding: 25px 0px;
 `;
 
 export const ProjectTitleText = styled.div`
-  font: small-caps bold 32px Helvetica, Verdana, sans-serif;
+  font: small-caps bold 48px Helvetica, Verdana, sans-serif;
   color: #262626;
-  text-align: center;
-  padding: 25px;
+  padding: 25px 10%;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05);
 `;
