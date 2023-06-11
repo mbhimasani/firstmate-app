@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 export interface TokenData {
     name: string;
-    tokenid: string;
+    tokenId: string;
     contract: string;
     description: string;
     imageSmall: string;
@@ -15,6 +15,7 @@ export interface TokenData {
 export const Card: FC<{
     token: TokenData;
   }> = ({ token }) => {   
+    console.log(token)
     
     return (
         <GridItemContainer>
@@ -22,9 +23,11 @@ export const Card: FC<{
                 <ImageContainer>
                     <GridItemImage src={token.imageSmall} alt=''></GridItemImage>
                 </ImageContainer>
-                {token.name}
-                {token.tokenid} 
-                {token.supply}
+                <TextContainer>
+                    <NFTName>{token.name}</NFTName>
+                    {token.tokenId} <br/>
+                    {token.supply}
+                </TextContainer>
             </CardContent>
         </GridItemContainer>
     )
@@ -41,6 +44,7 @@ export const CardContent = styled.div`
     overflow: hidden;
     width: 100%;
     height: 100%;
+    font-family: Helvetica, Verdana, sans-serif;
 `;
 
 export const ImageContainer = styled.div`
@@ -48,11 +52,24 @@ export const ImageContainer = styled.div`
     position: relative; 
     height: 70%; 
     width: 80%;
-    margin: 10px 10%;
+    margin: 5px 5%;
+    padding: 5px 5%;
 `;
 
 export const GridItemImage = styled.img`
     object-fit: cover;
     width:100%; 
     height:100%;
+`;
+
+export const TextContainer = styled.div`
+    position: relative; 
+    width: 80%;
+    margin: 5px 5%;
+    padding: 5px 5%;
+`;
+
+export const NFTName = styled.p`
+    font: bold 14px Helvetica, Verdana, sans-serif;
+    margin: 0px;
 `;

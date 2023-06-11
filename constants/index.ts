@@ -1,6 +1,9 @@
 // keys
 export const RESERVOIR_API_KEY = process.env.RESERVOIR_API_KEY ?? '';
 
+// links
+export const RESERVOIR_TOKENS_BASE_URL = 'https://api.reservoir.tools/tokens';
+
 // NFT list
 export const NFT_SAMPLE_LIST = [
     {contractID: '0x1f81520596ba9ae2b0e93fa0d63742781820b7a2', tokenID: '2'},

@@ -1,21 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { RESERVOIR_API_KEY } from '../../constants';
+import { RESERVOIR_API_KEY, RESERVOIR_TOKENS_BASE_URL } from '../../constants';
 
 const handleTokenList = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ) => { 
+  // query parameter here is a JSON string containing array of {contractid: string, tokenid: string} objects
+  // I opted to send the entire raw data over to the api route to parse. I initially tried to send contractid and tokenid as seperate parameters but realized that 1 query parameter is much more scalable. I then tried sending over a single query string as '?contractid=value&tokenid=value' but this was still read as 2 parameters in the request body. Sending over the entire data as a JSON string resolved those issues. I also preferred to create the query strings server-side.  
   const { nfts } = req.query;
 
   let collection: any[] = [];
   if (typeof nfts !== 'string') {
     res
-      .status(422)
-      .json({ statusCode: 422, message: 'query is not a valid value' });
+      .status(400)
+      .json({ statusCode: 400, message: 'Bad Request' });
     return;
   }
 
-  // most obvious way for me to create url. but may be better to use reservoir SDK getTokensV6 api route
   try { 
     const nftArray = JSON.parse(nfts);
     const tokenStrings = nftArray.map((nft: any) => {
@@ -26,8 +27,7 @@ const handleTokenList = async (
       'X-API-KEY': RESERVOIR_API_KEY ?? '',
     });
     const reservoirRes = await fetch(
-      `https://api.reservoir.tools/tokens/v6` +
-        `?${tokenStrings.join('&')}`,
+      `${RESERVOIR_TOKENS_BASE_URL}/v6` + `?${tokenStrings.join('&')}`,
       {
         headers,
       },
