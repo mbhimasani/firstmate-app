@@ -1,31 +1,38 @@
-import { useState } from 'react';
-import useSWR from 'swr';
-import { fetcher } from '.././utils/fetcher'
+import { FC } from 'react';
+import styled from 'styled-components';
+export interface TokenData {
+    name: string;
+    tokenid: string;
+    description: string;
+    image: string;
+    supply: string;
+}
 
-export const Card = () => {
-    const [text, setText] = useState(''); // for debugging
-
-    const contractid = '0x1f81520596ba9ae2b0e93fa0d63742781820b7a2';
-    const tokenid = '2'
-    // any api calls are done here
-    const { data } = useSWR(`/api/tokens?contractid=${contractid}&tokenid=${tokenid}`, fetcher)
+export const Card: FC<{
+    token: TokenData;
+  }> = ({ token }) => {   
     
-    const displayToken = () => {
-        return (
-            <div style={{"width": "200px", "height": "200px", "border": "2px solid black"}}>
-                {data?.collection?.[0].token?.name}
-            </div>
-        )
-    }
-
     return (
-        <div>
-            <button onClick={()=>{
-                setText(JSON.stringify(data));
-                console.log(data)
-            }}></button> 
-            <div>{text}</div>
-            {displayToken()}
-        </div>
+        <CardWrapper>
+            <CardContent>
+                {token.name}
+                {token.tokenid} 
+                {token.description} 
+                {token.image} 
+                {token.supply}
+            </CardContent>
+        </CardWrapper>
     )
 }
+
+export const CardWrapper = styled.div`
+    border: 1px solid rgba(0,0,0,.1);
+    flex: 33%;
+    margin-bottom: 10px;
+`;
+
+export const CardContent = styled.div`
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+`;
