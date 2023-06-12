@@ -31,6 +31,8 @@ export const ModalItem: FC<{
       label = "Buy Now: ";
       buttonlabel = "Buy Now"
     } else {
+      price = undefined;
+      currency = undefined;
       label = "-";
       buttonlabel = "Make Offer";
     };
@@ -38,7 +40,7 @@ export const ModalItem: FC<{
     return (
       <ModalPriceContainer>
         <LabelMediumSize className="modal-label">{label}</LabelMediumSize>
-        <ModalItemPrice>{price + " " + currency}</ModalItemPrice>
+        <ModalItemPrice>{price && (price + " " + currency)}</ModalItemPrice>
         <BuyBidButton>{buttonlabel}</BuyBidButton>
       </ModalPriceContainer>
     );
@@ -55,10 +57,17 @@ export const ModalItem: FC<{
         <ModalInfoContainer>
           <ModalHeading> {token.name} </ModalHeading>
           {showPrice()}
+          <ModalText>
+            Token:&nbsp;
+            <a href={
+              market.topBid.source ? market.topBid.source.url : (market.floorAsk.source ? market.floorAsk.source.url : '')
+              } target="_blank">
+              {token.contract}:{token.tokenId}
+            </a>
+          </ModalText>
           <ModalText> Maker: {market.floorAsk.maker} </ModalText>
           <ModalText> Collection: {token.collection?.name} </ModalText>
           <ModalText> Description: {token.description} </ModalText>
-          {/* TODO: display price. display button if available to buy. or display last sold price */}
         </ModalInfoContainer>
       </RightContainer>
     </ModalBody>

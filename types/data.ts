@@ -11,6 +11,7 @@ export interface TokenMarketData {
   };
   topBid: {
     price: PriceObject | undefined;
+    source: Source | undefined;
   };
 }
 
@@ -44,7 +45,7 @@ export interface PriceObject {
 }
 
 export interface Source {
-  name: string | undefined;
-  icon: string | undefined;
-  url: string | undefined;
+  name: string;
+  icon: string;
+  url: string;
 }
