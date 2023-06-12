@@ -3,7 +3,7 @@ import { NFTData } from "@/types/data";
 import { paths } from "@reservoir0x/reservoir-sdk";
 import { FC } from "react";
 import styled from "styled-components";
-import { NFTDescription } from "./gridItem";
+import { LabelMediumSize } from "./gridItem";
 
 export const ModalItem: FC<{
   nft: NFTData;
@@ -14,49 +14,52 @@ export const ModalItem: FC<{
   // TODO: price should be displayed in a large div with:
   //  button to place bid if available, latest bid price with currency symbol, nft owner
   //  button to buy nft if available, floor ask price with currency symbol, nft owner
-  // const showPrice = () => {
-  //   let price: number = 0;
-  //   let currency: string = "";
-  //   let label: string = "";
+  const showPrice = () => {
+    let price: number | undefined = 0;
+    let currency: string | undefined = "";
+    let label: string = "";
+    let buttonlabel: string = "";
 
-  //   if (market.topBid?.price) {
-  //     price = market.topBid.price.amount.native;
-  //     currency = market.topBid.price.currency.symbol;
-  //     label = "Current Bid: ";
-  //   } else if (market.floorAsk.price) {
-  //     price = market.floorAsk.price.amount.native;
-  //     currency = market.floorAsk.price.currency.symbol;
-  //     label = "Buy Now: ";
-  //   } else {
-  //     return (
-  //       <PriceContainer>
-  //         <LabelMediumSize> - </LabelMediumSize>
-  //       </PriceContainer>
-  //     );
-  //   }
+    if (market.topBid?.price) {
+      price = market.topBid.price.amount.native;
+      currency = market.topBid.price.currency.symbol;
+      label = "Current Bid: ";
+      buttonlabel = 'Place Bid';
+    } else if (market.floorAsk.price) {
+      price = market.floorAsk.price.amount.native;
+      currency = market.floorAsk.price.currency.symbol;
+      label = "Buy Now: ";
+      buttonlabel = "Buy Now"
+    } else {
+      label = "-";
+      buttonlabel = "Make Offer";
+    };
 
-  //   return (
-  //     <PriceContainer>
-  //       <LabelMediumSize>{label}</LabelMediumSize>
-  //       <NFTPrice>{price + " " + currency}</NFTPrice>
-  //     </PriceContainer>
-  //   );
-  // };
+    return (
+      <ModalPriceContainer>
+        <LabelMediumSize className="modal-label">{label}</LabelMediumSize>
+        <ModalItemPrice>{price + " " + currency}</ModalItemPrice>
+        <BuyBidButton>{buttonlabel}</BuyBidButton>
+      </ModalPriceContainer>
+    );
+  };
 
   return (
     <ModalBody>
       <LeftContainer>
-        <ImageContainer>
-          <GridItemImage src={token.imageLarge} alt=""></GridItemImage>
-        </ImageContainer>
+        <ModalImageContainer>
+          <ModalItemImage src={token.imageLarge} alt=""></ModalItemImage>
+        </ModalImageContainer>
       </LeftContainer>
       <RightContainer>
-        <NFTMainInfo>
-            <H1> {token.name} </H1>
-            <Text> Maker: {market.floorAsk.maker} </Text>
-            <Text> Collection: {token.collection?.name} </Text>
-            <Text> Description: {token.description} </Text>
-          </NFTMainInfo>
+        <ModalInfoContainer>
+          <ModalHeading> {token.name} </ModalHeading>
+          {showPrice()}
+          <ModalText> Maker: {market.floorAsk.maker} </ModalText>
+          <ModalText> Collection: {token.collection?.name} </ModalText>
+          <ModalText> Description: {token.description} </ModalText>
+          {/* TODO: display price. display button if available to buy. or display last sold price */}
+        </ModalInfoContainer>
       </RightContainer>
     </ModalBody>
   );
@@ -80,31 +83,36 @@ export const RightContainer = styled.div`
   overflow-y: scroll;
 `;
 
-export const ImageContainer = styled.div`
+export const ModalImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   width: 95%;
   padding: 15px;
 `;
 
-export const GridItemImage = styled.img`
+export const ModalItemImage = styled.img`
   object-fit: contain;
   width: 100%;
   height: 100%;
   border-radius: 5px;
 `;
 
-export const NFTMainInfo = styled.div`
-  font: 18px HVerdana, sans-serif;
-  color: rgba(0,0,0,0.8);
+export const ModalInfoContainer = styled.div`  
   padding: 15px;
+  font-family: Helvetica, Verdana, sans-serif;
+  color: rgba(0,0,0,0.75);
 `;
 
-export const H1 = styled.p`
+export const ModalHeading = styled.p`  
   font-weight: bold;
-  font-size: 1.2em;
-  padding: 5px 15px;
-  margin:0px;
+  font-size: 1.5em;
+  padding: 15px 15px;
+  margin: 0px 0px 15px 5px;
+  color: rgba(0,0,0,0.8);
+  width: fit-content;
+  border: 1px solid rgba(0,0,0,.05);
+  border-radius: 10px;
+  box-shadow: 0px 2px rgba(0,0,0,.1);
 `;
 
 export const ThumbnailImg = styled.img`
@@ -113,7 +121,39 @@ export const ThumbnailImg = styled.img`
   padding: 15px 0px 0px 15px;
 `;
 
-export const Text = styled.p`
+export const ModalText = styled.p`
   margin: 0px;
   padding: 5px 15px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 10px;
+`;
+
+export const ModalItemPrice = styled.p`
+  margin: 0px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(0,0,0,.8);
+`;
+
+export const ModalPriceContainer = styled.div`
+  padding: 10px 10px 20px 10px;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+`;
+
+export const BuyBidButton = styled.button`
+  margin-left: auto;
+  margin-right: 10px;
+  background-color: black;
+  padding: 10px;
+  width: 55%;
+  color: white;
+  font-size: 20px;
+  border-radius: 25px;
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: .35;
 `;
