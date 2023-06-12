@@ -36,7 +36,19 @@ export default function Home() {
         )}
         <ProjectHeader></ProjectHeader>
         <MainContent>
-          <FilterAndSortContainerRow></FilterAndSortContainerRow>
+          <FilterSearchSortContainerRow>
+            {/* TODO: 
+            <FilterOptions>
+              non functional side panel
+            </FilterOptions>
+            <Search>
+              non functional search box
+            </Search>
+            <SortOptions>
+              non functional dropdown
+            </SortOptions>
+            */}
+          </FilterSearchSortContainerRow>
           <GridContainer>
             {collections?.map((collection, index) => (
               <Card
@@ -79,4 +91,4 @@ export const GridContainer = styled.div`
   justify-items: center;
 `;
 
-export const FilterAndSortContainerRow = styled.div``;
+export const FilterSearchSortContainerRow = styled.div``;

@@ -31,7 +31,7 @@ export const Modal: FC<{
 };
 
 export const ModalOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -44,13 +44,12 @@ export const ModalOverlay = styled.div`
 
 export const ModalWrapper = styled.div`
   width: 70vw;
-  height: 80vh;
+  height: 70vh;
 `;
 
 export const ModalContainer = styled.div`
   background: white;
-  height: 100%;
-  width: 100%;
+  height: calc(70vh - 30px);
   border-radius: 15px;
   padding: 15px;
 `;

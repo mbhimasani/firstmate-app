@@ -7,6 +7,7 @@ export interface TokenMarketData {
   floorAsk: {
     price: PriceObject | undefined;
     source: Source | undefined;
+    maker: string;
   };
   topBid: {
     price: PriceObject | undefined;
@@ -23,7 +24,7 @@ export interface TokenData {
   kind: string | undefined;
   supply: string | undefined;
   rarity: string | undefined;
-  collection: Collection | undefined;
+  collection: Collection;
   owner: string | undefined;
 }
 
