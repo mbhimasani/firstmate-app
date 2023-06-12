@@ -133,6 +133,7 @@ export const ModalText = styled.p`
   margin-bottom: 10px;
   border: 1px solid rgba(0,0,0,.1);
   border-radius: 10px;
+  word-wrap: break-word;
 `;
 
 export const ModalItemPrice = styled.p`
