@@ -34,7 +34,7 @@ export const ProjectHeader: FC = () => {
   return (
     <>
       <HeaderWrapper>
-        <ProjectTitleText>BROWSE</ProjectTitleText>
+        <ProjectTitleText>NFT Marketplace: Buy, Sell, Browse</ProjectTitleText>
       </HeaderWrapper>
     </>
   );
