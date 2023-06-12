@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { NFTData } from "@/types/data";
-import { paths } from "@reservoir0x/reservoir-sdk";
 import { FC } from "react";
 import styled from "styled-components";
 
@@ -70,6 +69,7 @@ export const GridItemContainer = styled.div`
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 7px 7px rgba(0, 0, 0, 0.05),
       0px 6px 12px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
+    cursor: pointer;
   }
 
   @media screen and (max-width: 575px) {

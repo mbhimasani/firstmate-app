@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { NFTData } from "@/types/data";
-import { paths } from "@reservoir0x/reservoir-sdk";
 import { FC } from "react";
 import styled from "styled-components";
 import { LabelMediumSize } from "./gridItem";

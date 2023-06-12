@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Card } from "./gridItem";
 import { NFTData } from "@/types/data";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
