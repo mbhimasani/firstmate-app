@@ -71,6 +71,10 @@ export const GridItemContainer = styled.div`
       0px 6px 12px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
   }
+
+  @media screen and (max-width: 575px) {
+    height: 60vh;
+  }
 `;
 
 export const CardContent = styled.div`

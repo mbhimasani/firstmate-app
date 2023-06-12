@@ -45,6 +45,10 @@ export const ModalOverlay = styled.div`
 export const ModalWrapper = styled.div`
   width: 70vw;
   height: 70vh;
+
+  @media screen and (max-width: 575px) {
+    width: 90vw;
+  }
 `;
 
 export const ModalContainer = styled.div`

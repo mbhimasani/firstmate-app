@@ -70,6 +70,11 @@ export const ModalBody = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 50%);
   height: 95%;
+
+  @media screen and (max-width: 575px) {
+    display: block;
+    overflow-y: scroll;
+  }
 `;
 
 export const LeftContainer = styled.div`

@@ -39,13 +39,13 @@ export default function Home() {
           <FilterSearchSortContainerRow>
             {/* TODO: 
             <FilterOptions>
-              non functional side panel
+              side panel (options: selling, source, currrency)
             </FilterOptions>
             <Search>
-              non functional search box
+              search box (tokenid, collection, contractid, name)
             </Search>
             <SortOptions>
-              non functional dropdown
+              dropdown (options: floorAsk price, tokenid, rarity)
             </SortOptions>
             */}
           </FilterSearchSortContainerRow>
