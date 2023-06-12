@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { Card } from "./gridItem";
-import { TokenData } from "@/types/data";
+import { NFTData } from "@/types/data";
 
 export const Modal: FC<{
-    token: TokenData | undefined;
+    nft: NFTData | undefined;
     onClose: () => void;
-  }> = ({ token, onClose }) => {
+  }> = ({ nft, onClose }) => {
 
     const modalContent = (
         <div className="modal-overlay">
@@ -16,7 +16,7 @@ export const Modal: FC<{
                             x
                         </a>
                     </div>
-                    {token && <Card token={token}></Card>}
+                    {nft && <Card nft={nft}></Card>}
                 </div>
             </div>
         </div>

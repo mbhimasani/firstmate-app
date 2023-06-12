@@ -1,14 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import { TokenData } from '@/types/data';
+import { NFTData } from '@/types/data';
 import { paths } from '@reservoir0x/reservoir-sdk';
 import { FC } from 'react';
 import styled from 'styled-components';
 
 export const Card: FC<{
-    token: TokenData;
+    nft: NFTData;
     onClick?: () => void;
-  }> = ({ token, onClick }) => {   
-    
+  }> = ({ nft, onClick }) => {   
+    const token = nft.token;
+    const market = nft.market;
+
     return (
         <GridItemContainer onClick={onClick}>
             <CardContent>
@@ -21,6 +23,7 @@ export const Card: FC<{
                     <TextContainer>
                         <NFTName>{token.name}</NFTName>
                         <NFTDescription>{token.description}</NFTDescription>
+                        {market.floorAsk?.price?.amount.native}
                     </TextContainer>
                 </CardContentBottom>
             </CardContent>

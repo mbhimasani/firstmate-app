@@ -7,7 +7,7 @@ import { ROUTES } from '@/constants/routes';
 import useSWR from 'swr';
 import { fetcher } from '@/./utils/fetcher'
 import styled from 'styled-components';
-import { TokenData } from '@/types/data';
+import { NFTData } from '@/types/data';
 
 export default function Home() {
 
@@ -18,16 +18,16 @@ export default function Home() {
   const { data, error } = useSWR(`${ROUTES.API.TOKENS.INDEX}?nfts=${JSON.stringify(NFT_SAMPLE_LIST)}`, fetcher); 
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
-  
-  // created interface to isolate data needed and also not have to commit to using SDK right.
-  const collections = data?.collection as {token: TokenData}[];
+
+  // the data returned from the request matches the Reservoir API typed response for paths['/tokens/v6']['get']['responses']['200']['schema']['tokens'], so I could have used their provided typings, but for sake of clarity on types expected, I opted to create my own interface. The limitation on this is that the local typing may become out of date if the Reservoir API updates their types. 
+  const collections = data?.collection as  NFTData[];
 
   return (
     <>
       <FirstMateHead></FirstMateHead>
       <MainWrapper>
         {showModal &&
-          <Modal onClose={() => setShowModal(false)} token={collections?.at(curIndex)?.token}/>
+          <Modal onClose={() => setShowModal(false)} nft={collections?.at(curIndex)}/>
         }
         <ProjectHeader></ProjectHeader>
         <MainContent>
@@ -37,7 +37,7 @@ export default function Home() {
           <GridContainer>      
             {collections?.map((collection, index) => ( 
               <Card 
-                token={collection.token} 
+                nft={collection}
                 onClick={() => {
                   setShowModal(true);
                   setCurrentIndex(index);
