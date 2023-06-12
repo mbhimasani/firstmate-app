@@ -10,9 +10,6 @@ export const ModalItem: FC<{
   const token = nft.token;
   const market = nft.market;
 
-  // TODO: price should be displayed in a large div with:
-  //  button to place bid if available, latest bid price with currency symbol, nft owner
-  //  button to buy nft if available, floor ask price with currency symbol, nft owner
   const showPrice = () => {
     let price: number | undefined = 0;
     let currency: string | undefined = "";
