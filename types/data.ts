@@ -5,31 +5,31 @@ export interface NFTData {
 
 export interface TokenMarketData {
     floorAsk: {
-        price: PriceObject;
-        source: Source;
+        price: PriceObject | undefined;
+        source: Source | undefined;
     };
     topBid: {
-        price: PriceObject;
+        price: PriceObject | undefined;
     };
 }
 
 export interface TokenData {
     contract: string;
     tokenId: string;
-    name: string;    
-    description: string;
-    imageSmall: string;
-    imageLarge: string;
-    kind: string;
-    supply: string;
-    rarity: string;
-    collection: Collection;
-    owner: string;
+    name: string | undefined;    
+    description: string | undefined;
+    imageSmall: string | undefined;
+    imageLarge: string | undefined;
+    kind: string | undefined;
+    supply: string | undefined;
+    rarity: string | undefined;
+    collection: Collection | undefined;
+    owner: string | undefined;
 }
 
 export interface Collection {
-    id: string;
-    name: string;
+    id: string | undefined;
+    name: string | undefined;
 };
 
 export interface PriceObject {
@@ -43,6 +43,6 @@ export interface PriceObject {
 };
 
 export interface Source {
-    name: string;
-    url: string;
+    name: string | undefined;
+    url: string | undefined;
 };

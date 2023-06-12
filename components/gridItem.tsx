@@ -11,6 +11,39 @@ export const Card: FC<{
     const token = nft.token;
     const market = nft.market;
 
+    const showPrice = () => {
+        let price: number = 0;
+        let currency: string = '';
+        let label: string = '';
+
+        if (market.topBid?.price) {
+            price = market.topBid.price.amount.native;
+            currency = market.topBid.price.currency.symbol
+            label = 'Current Bid: '
+        } else if (market.floorAsk.price) {
+            price = market.floorAsk.price.amount.native;
+            currency = market.floorAsk.price.currency.symbol;
+            label = 'Buy Now: '
+        } else {
+            return ( 
+                <PriceContainer>
+                    <LabelMediumSize> - </LabelMediumSize>
+                </PriceContainer> 
+            )
+        }
+
+        return (
+            <PriceContainer>
+                <LabelMediumSize>
+                    {label}
+                </LabelMediumSize>
+                <NFTPrice>
+                    {price + ' ' + currency}
+                </NFTPrice>
+            </PriceContainer>
+        )
+    }
+
     return (
         <GridItemContainer onClick={onClick}>
             <CardContent>
@@ -23,8 +56,8 @@ export const Card: FC<{
                     <TextContainer>
                         <NFTName>{token.name}</NFTName>
                         <NFTDescription>{token.description}</NFTDescription>
-                        {market.floorAsk?.price?.amount.native}
                     </TextContainer>
+                    {showPrice()}
                 </CardContentBottom>
             </CardContent>
         </GridItemContainer>
@@ -56,8 +89,8 @@ export const CardContentBottom = styled.div`
     position: relative; 
     height: 25%;
     background-color: rgba(0,0,0,1);
+    display: block;
 `;
-
 
 export const ImageContainer = styled.div`
     overflow: hidden; 
@@ -80,7 +113,7 @@ export const TextContainer = styled.div`
 
 export const NFTName = styled.p`
     font: bold 14px Helvetica, Verdana, sans-serif;
-    margin: 0px;
+    margin: 5px 0px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -94,4 +127,23 @@ export const NFTDescription = styled.p`
     text-overflow: ellipsis;
     margin: 5px 0px;
     color: rgba(255,255,255,0.8)
+`;
+
+export const NFTPrice = styled.p`
+    font-size: 22px;
+    margin: 0px;
+    color: rgba(255,255,255,1)
+`;
+
+export const LabelMediumSize = styled.p`
+    font-size: 18px;
+    margin 0px;
+    color: rgba(255, 255, 255, 0.6);
+`;
+
+export const PriceContainer = styled.span`
+    display: flex;
+    padding: 5% 12% 0%;
+    align-items: center;
+    justify-content: space-evenly;
 `;
