@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, TokenData } from '@/components/gridItem'
+import { Card } from '@/components/gridItem'
 import { FirstMateHead, ProjectHeader } from '@/components/header';
 import { Modal } from '@/components/modal';
 import { NFT_SAMPLE_LIST } from '@/constants';
@@ -7,6 +7,7 @@ import { ROUTES } from '@/constants/routes';
 import useSWR from 'swr';
 import { fetcher } from '@/./utils/fetcher'
 import styled from 'styled-components';
+import { TokenData } from '@/types/data';
 
 export default function Home() {
 
@@ -18,7 +19,7 @@ export default function Home() {
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
   
-  // created interface to isolate data needed and also not have to commit to using SDK right away.
+  // created interface to isolate data needed and also not have to commit to using SDK right.
   const collections = data?.collection as {token: TokenData}[];
 
   return (

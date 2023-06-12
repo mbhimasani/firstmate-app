@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { TokenData, Card } from "./gridItem";
+import { Card } from "./gridItem";
+import { TokenData } from "@/types/data";
 
 export const Modal: FC<{
     token: TokenData | undefined;
