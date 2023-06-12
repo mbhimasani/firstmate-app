@@ -1,6 +1,7 @@
 # FirstMate Create NFT Marketplace Challege
 
 ## Local Setup
+
 Run the following commands to setup, given `node` and `npm` is available:
 
 1. `git clone git@github.com:mbhimasani/firstmate-app.git`
@@ -18,21 +19,22 @@ To deploy your own version of this app on Vercel, the easiest way is to use the 
 ---
 
 ## Project Structure
-- 
-| file                       | description                                                                                                                                                                                                             |
-|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `components/gridItem.tsx`  | Functional component rendering individual grid items.                                                                                                                                                                   |
-| `components/header.tsx`    | Components rendering Head metadata and project headers.                                                                                                                                                                 |
-| `components/modal.tsx`     | Functional component rendering modal container to display selected token.                                                                                                                                               |
-| `components/modalItem.tsx` | Functional component rendering modal body.                                                                                                                                                                              |
-| `constants/index.ts`       | Constants pertinent to `pages/index.tsx` (keys, links, testing data)                                                                                                                                                    |
-| `constants/routes.ts`      | API endpoints                                                                                                                                                                                                           |
-| `pages/_app.tsx`           | App component to initialize pages.                                                                                                                                                                                      |
-| `pages/_document.tsx`      | Custom document component to update the <html> and <body> tags used to render root Page.                                                                                                                                |
-| `pages/api/tokens.ts`      | Tokens API endpoint - GET request to Reservoir API for token metadata with error handling is made here.  OK Response is returned as Reservoir API Typing for `paths["/tokens/v6"]["get"]["responses"]["200"]["schema"]` |
-| `pages/index.tsx`          | App index Page - GET request to `tokens` endpoint is made here.                                                                                                                                                         |
-| `types/data.ts`            | Typings for response from the `tokens` endpoint.                                                                                                                                                                        |
-| `utils/fetcher.ts`         | Fetcher function for useSWR.                                                                                                                                                                                            |
+
+| file                       | description                                                                                                                                                                                                            |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `components/gridItem.tsx`  | Functional component rendering individual grid items.                                                                                                                                                                  |
+| `components/header.tsx`    | Components rendering Head metadata and project headers.                                                                                                                                                                |
+| `components/modal.tsx`     | Functional component rendering modal container to display selected token.                                                                                                                                              |
+| `components/modalItem.tsx` | Functional component rendering modal body.                                                                                                                                                                             |
+| `constants/index.ts`       | Constants pertinent to `pages/index.tsx` (keys, links, testing data)                                                                                                                                                   |
+| `constants/routes.ts`      | API endpoints                                                                                                                                                                                                          |
+| `pages/_app.tsx`           | App component to initialize pages.                                                                                                                                                                                     |
+| `pages/_document.tsx`      | Custom document component to update the <html> and <body> tags used to render root Page.                                                                                                                               |
+| `pages/api/tokens.ts`      | Tokens API endpoint - GET request to Reservoir API for token metadata with error handling is made here. OK Response is returned as Reservoir API Typing for `paths["/tokens/v6"]["get"]["responses"]["200"]["schema"]` |
+| `pages/index.tsx`          | App index Page - GET request to `tokens` endpoint is made here.                                                                                                                                                        |
+| `types/data.ts`            | Typings for response from the `tokens` endpoint.                                                                                                                                                                       |
+| `utils/fetcher.ts`         | Fetcher function for useSWR.                                                                                                                                                                                           |
+
 ---
 
 ## Assignment Overview

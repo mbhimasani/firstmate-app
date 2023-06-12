@@ -1,8 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import {
-  RESERVOIR_API_KEY,
-  RESERVOIR_TOKENS_BASE_URL,
-} from "../../constants";
+import { RESERVOIR_API_KEY, RESERVOIR_TOKENS_BASE_URL } from "../../constants";
 import { paths } from "@reservoir0x/reservoir-sdk";
 
 const handleTokenList = async (req: NextApiRequest, res: NextApiResponse) => {

@@ -23,23 +23,23 @@ export const ModalItem: FC<{
       price = market.topBid.price.amount.native;
       currency = market.topBid.price.currency.symbol;
       label = "Current Bid: ";
-      buttonlabel = 'Place Bid';
+      buttonlabel = "Place Bid";
     } else if (market.floorAsk.price) {
       price = market.floorAsk.price.amount.native;
       currency = market.floorAsk.price.currency.symbol;
       label = "Buy Now: ";
-      buttonlabel = "Buy Now"
+      buttonlabel = "Buy Now";
     } else {
       price = undefined;
       currency = undefined;
       label = "-";
       buttonlabel = "Make Offer";
-    };
+    }
 
     return (
       <ModalPriceContainer>
         <LabelMediumSize className="modal-label">{label}</LabelMediumSize>
-        <ModalItemPrice>{price && (price + " " + currency)}</ModalItemPrice>
+        <ModalItemPrice>{price && price + " " + currency}</ModalItemPrice>
         <BuyBidButton>{buttonlabel}</BuyBidButton>
       </ModalPriceContainer>
     );
@@ -58,9 +58,16 @@ export const ModalItem: FC<{
           {showPrice()}
           <ModalText>
             Token:&nbsp;
-            <a href={
-              market.topBid.source ? market.topBid.source.url : (market.floorAsk.source ? market.floorAsk.source.url : '')
-              } target="_blank">
+            <a
+              href={
+                market.topBid.source
+                  ? market.topBid.source.url
+                  : market.floorAsk.source
+                  ? market.floorAsk.source.url
+                  : ""
+              }
+              target="_blank"
+            >
               {token.contract}:{token.tokenId}
             </a>
           </ModalText>
@@ -110,22 +117,22 @@ export const ModalItemImage = styled.img`
   border-radius: 5px;
 `;
 
-export const ModalInfoContainer = styled.div`  
+export const ModalInfoContainer = styled.div`
   padding: 15px;
   font-family: Helvetica, Verdana, sans-serif;
-  color: rgba(0,0,0,0.75);
+  color: rgba(0, 0, 0, 0.75);
 `;
 
-export const ModalHeading = styled.p`  
+export const ModalHeading = styled.p`
   font-weight: bold;
   font-size: 1.5em;
   padding: 15px 15px;
   margin: 0px 0px 15px 5px;
-  color: rgba(0,0,0,0.8);
+  color: rgba(0, 0, 0, 0.8);
   width: fit-content;
-  border: 1px solid rgba(0,0,0,.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 10px;
-  box-shadow: 0px 2px rgba(0,0,0,.1);
+  box-shadow: 0px 2px rgba(0, 0, 0, 0.1);
 `;
 
 export const ThumbnailImg = styled.img`
@@ -139,7 +146,7 @@ export const ModalText = styled.p`
   padding: 5px 15px;
   font-size: 18px;
   margin-bottom: 10px;
-  border: 1px solid rgba(0,0,0,.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   word-wrap: break-word;
 `;
@@ -148,7 +155,7 @@ export const ModalItemPrice = styled.p`
   margin: 0px;
   font-size: 20px;
   font-weight: bold;
-  color: rgba(0,0,0,.8);
+  color: rgba(0, 0, 0, 0.8);
 `;
 
 export const ModalPriceContainer = styled.div`
@@ -169,5 +176,5 @@ export const BuyBidButton = styled.button`
   border-radius: 25px;
   pointer-events: none;
   cursor: not-allowed;
-  opacity: .35;
+  opacity: 0.35;
 `;
