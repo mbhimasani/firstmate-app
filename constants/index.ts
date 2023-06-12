@@ -3,6 +3,7 @@ export const RESERVOIR_API_KEY = process.env.RESERVOIR_API_KEY ?? '';
 
 // links
 export const RESERVOIR_TOKENS_BASE_URL = 'https://api.reservoir.tools/tokens';
+export const RESERVOIR_API_URL = '@reservoirprotocol/v3.0#dun2q9vlij245g9';
 
 // NFT list
 export const NFT_SAMPLE_LIST = [

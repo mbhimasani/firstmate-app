@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { paths } from '@reservoir0x/reservoir-sdk';
 import { FC } from 'react';
 import styled from 'styled-components';
 export interface TokenData {
@@ -25,7 +26,7 @@ export const Card: FC<{
                 </ImageContainer>
                 <TextContainer>
                     <NFTName>{token.name}</NFTName>
-                    {token.tokenId} <br/>
+                    <NFTDescription>{token.description}</NFTDescription>
                     {token.supply}
                 </TextContainer>
             </CardContent>
@@ -72,4 +73,16 @@ export const TextContainer = styled.div`
 export const NFTName = styled.p`
     font: bold 14px Helvetica, Verdana, sans-serif;
     margin: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
+export const NFTDescription = styled.p`
+    font: 12px Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 5px 2px;
 `;

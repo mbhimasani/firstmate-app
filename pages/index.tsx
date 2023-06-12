@@ -18,7 +18,7 @@ export default function Home() {
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
   
-  // started with manually creating interfaces expected to have a better idea of the reservoir api response and not commit to the SDK right away. Can abstract this using the Reservoir SDK.
+  // created interface to isolate data needed and also not have to commit to using SDK right away.
   const collections = data?.collection as {token: TokenData}[];
 
   return (

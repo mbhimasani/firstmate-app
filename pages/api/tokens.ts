@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { RESERVOIR_API_KEY, RESERVOIR_TOKENS_BASE_URL } from '../../constants';
+import { RESERVOIR_API_KEY, RESERVOIR_API_URL, RESERVOIR_TOKENS_BASE_URL } from '../../constants';
+import { paths } from '@reservoir0x/reservoir-sdk';
 
 const handleTokenList = async (
   req: NextApiRequest,
@@ -7,9 +8,12 @@ const handleTokenList = async (
 ) => { 
   // query parameter here is a JSON string containing array of {contractid: string, tokenid: string} objects
   // I opted to send the entire raw data over to the api route to parse. I initially tried to send contractid and tokenid as seperate parameters but realized that 1 query parameter is much more scalable. I then tried sending over a single query string as '?contractid=value&tokenid=value' but this was still read as 2 parameters in the request body. Sending over the entire data as a JSON string resolved those issues and it is much more efficient/readable in this case since the data provided is very clean. I also preferred to create the query strings server-side.  
+
   const { nfts } = req.query;
 
-  let collection: any[] = [];
+  // ensures that the response body is exactly what we expect, and that type stays up to date with the Reservoir API
+  let collection: paths['/tokens/v6']['get']['responses']['200']['schema']['tokens'] = [];
+
   if (typeof nfts !== 'string') {
     res
       .status(400)
@@ -35,7 +39,7 @@ const handleTokenList = async (
 
     if (reservoirRes.ok) {
       const { tokens } = await reservoirRes.json();
-      collection = [...collection, ...tokens];
+      collection = tokens as paths['/tokens/v6']['get']['responses']['200']['schema']['tokens'];
     } else {
       res.status(500).json({
         statusCode: 500,
