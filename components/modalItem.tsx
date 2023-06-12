@@ -4,10 +4,9 @@ import { paths } from '@reservoir0x/reservoir-sdk';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-export const Card: FC<{
+export const ModalItem: FC<{
     nft: NFTData;
-    onClick?: () => void;
-  }> = ({ nft, onClick }) => {   
+  }> = ({ nft }) => {   
     const token = nft.token;
     const market = nft.market;
  
@@ -45,12 +44,15 @@ export const Card: FC<{
     }
 
     return (
-        <GridItemContainer onClick={onClick}>
-            <CardContent>
+        <ModalBody>
+            <LeftContainer>
+                <ImageContainer>
+                    <GridItemImage src={token.imageLarge} alt=''></GridItemImage>
+                </ImageContainer>
+            </LeftContainer>
+            {/* <CardContent>
                 <CardContentTop>
-                    <ImageContainer>
-                        <GridItemImage src={token.imageSmall} alt=''></GridItemImage>
-                    </ImageContainer>
+                    
                 </CardContentTop>
                 <CardContentBottom>
                     <TextContainer>
@@ -59,32 +61,40 @@ export const Card: FC<{
                     </TextContainer>
                     {showPrice()}
                 </CardContentBottom>
-            </CardContent>
-        </GridItemContainer>
+            </CardContent> */}
+        </ModalBody>
     )
 }
 
-export const GridItemContainer = styled.div`
-    margin-bottom: 10px;
-    width: 100%;
-    height: 50vh;
+export const ModalBody = styled.div`
     border-radius: 10px 10px 0px 0px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    height: 95%;
 
-    &:hover {
-        box-shadow: 
-            0px 0px 0px rgba(0,0,0,0), 
-            0px 7px 7px rgba(0,0,0,0.05), 
-            0px 6px 12px rgba(0,0,0,0.1);
-        transform: translateY(-2px);
-    }
 `;
 
-export const CardContent = styled.div`
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    font-family: Helvetica, Verdana, sans-serif;
+export const ImageContainer = styled.div`
+    overflow: hidden; 
+    position: relative; 
+    height: 50%;
+    width: 95%;    
+    padding: 15px;
 `;
+
+export const GridItemImage = styled.img`
+    object-fit: cover;
+    width:100%; 
+    height:100%;
+    border-radius: 5px;
+`;
+
+export const LeftContainer = styled.div`
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 5px;
+`;
+
 
 export const CardContentTop = styled.div`
     position: relative; 
@@ -99,19 +109,6 @@ export const CardContentBottom = styled.div`
     height: 25%;
     background-color: rgba(0,0,0,1);
     display: block;
-`;
-
-export const ImageContainer = styled.div`
-    overflow: hidden; 
-    border-radius: 5px;
-    position: relative; 
-    height: 100%;
-`;
-
-export const GridItemImage = styled.img`
-    object-fit: cover;
-    width:100%; 
-    height:100%;
 `;
 
 export const TextContainer = styled.div`
@@ -155,4 +152,11 @@ export const PriceContainer = styled.span`
     padding: 5% 12% 0%;
     align-items: center;
     justify-content: space-evenly;
+`;
+
+export const CardContent = styled.div`
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    font-family: Helvetica, Verdana, sans-serif;
 `;

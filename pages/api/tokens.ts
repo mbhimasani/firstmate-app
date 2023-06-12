@@ -31,7 +31,9 @@ const handleTokenList = async (
       'X-API-KEY': RESERVOIR_API_KEY ?? '',
     });
     const reservoirRes = await fetch(
-      `${RESERVOIR_TOKENS_BASE_URL}/v6` + `?${tokenStrings.join('&')}`,
+      `${RESERVOIR_TOKENS_BASE_URL}/v6` 
+      + `?${tokenStrings.join('&')}`
+      + `&includeTopBid=true&includeQuantity=true`,
       {
         headers,
       },

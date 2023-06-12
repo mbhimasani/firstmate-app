@@ -61,6 +61,11 @@ export const MainContent = styled.div`
   width: 100%;
   background-color: #f9f9f9;
   min-height: 100vh;
+
+  :disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
 
 export const GridContainer = styled.div`
